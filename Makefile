@@ -1,14 +1,14 @@
 .ONESHELL:
 SHELL = /bin/bash
 
-build: build-dc build-pc
+build: build-petclinic-components build-petclinic-tools
 
 petclinic: pull up
 
-build-dc:
+build-petclinic-components:
 	DOCKER_BUILDKIT=1 docker-compose build
 
-build-pc:
+build-petclinic-tools:
 	DOCKER_BUILDKIT=1 docker build --tag bryandollery/petclinic .
 
 pull:
@@ -17,7 +17,10 @@ pull:
 	docker pull bryandollery/petclinic-client
 
 run:
-	docker run -it --rm -v /var/run/docker.sock:/var/run/docker.sock bryandollery/petclinic up
+	docker run -it --rm -v /var/run/docker.sock:/var/run/docker.sock bryandollery/petclinic
+
+cbuild:
+	docker run -it --rm -v /var/run/docker.sock:/var/run/docker.sock bryandollery/petclinic build
 
 up:
 	docker-compose up -d

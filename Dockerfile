@@ -1,12 +1,13 @@
 from alpine
 
-run apk add docker docker-compose make bash
+run apk add docker docker-compose make bash git
 
-copy ./ /petclinic/
+run git clone https://github.com/BryanDollery/petclinic
 
 workdir /petclinic
 
 env DOCKER_BUILDKIT=1
 
-entrypoint ["/bin/bash", "-c", "make"]
-cmd ["up"]
+entrypoint ["/usr/bin/make"]
+
+cmd ["petclinic"]
