@@ -1,0 +1,14 @@
+version: '3.5'
+services:
+  petclinic-server:
+    container_name: petclinic-server
+    image: bryandollery/petclinic-server
+    build: ./petclinic-server
+    ports:
+    - "8080:9966"
+  petclinic-client:
+    container_name: petclinic-client
+    image: bryandollery/petclinic-client
+    build: ./petclinic-client
+    ports: 
+    - "8081:8400"
