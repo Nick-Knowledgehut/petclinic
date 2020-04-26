@@ -10,7 +10,11 @@ env PATH=$PATH:/$M2_HOME/bin
 
 run git clone https://github.com/spring-petclinic/spring-petclinic-rest.git
 run cd spring-petclinic-rest && \
-    mvn clean install
+    sed -i 's/localhost/db/' src/main/resources/application-postgresql.properties && \
+    sed -i 's/localhost/db/' src/main/resources/application-mysql.properties && \
+    sed -i 's/hsqldb/postgresql/' src/main/resources/application.properties && \
+    sed -i 's/false/true/' src/main/resources/application.properties && \
+    mvn clean package -DskipTests
 
 from adoptopenjdk/openjdk11:alpine
 copy --from=build /spring-petclinic-rest/target/spring-petclinic-rest-2.2.5.jar /

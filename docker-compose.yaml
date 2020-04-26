@@ -5,10 +5,28 @@ services:
     image: bryandollery/petclinic-server
     build: ./petclinic-server
     ports:
-    - "8080:9966"
+      - "8080:9966"
+    restart: always
   petclinic-client:
     container_name: petclinic-client
     image: bryandollery/petclinic-client
     build: ./petclinic-client
     ports: 
-    - "8081:8400"
+      - "8081:8400"
+    restart: always
+    depends_on:
+      - db
+  db:
+    container_name: db
+    image: postgres:alpine
+    volumes:
+      - db-data:/var/lib/postgresql/data
+    restart: always
+    environment:
+      PGDATA: /var/lib/postgresql/data/pgdata
+      POSTGRES_DB: petclinic
+      POSTGRES_PASSWORD: petclinic
+      POSTGRES_USER: postgres
+
+volumes:
+    db-data:

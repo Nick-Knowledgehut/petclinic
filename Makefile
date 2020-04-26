@@ -33,3 +33,12 @@ clean:
 
 logs:
 	docker-compose logs -f
+
+debug-server:
+	docker exec -it petclinic-server sh
+
+debug-client:
+	docker exec -it petclinic-client sh
+
+debug-db:
+	docker exec -it db sh
