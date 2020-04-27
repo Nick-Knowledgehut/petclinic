@@ -7,6 +7,8 @@ services:
     ports:
       - "8080:9966"
     restart: always
+    depends_on:
+      - db
   petclinic-client:
     container_name: petclinic-client
     image: bryandollery/petclinic-client
@@ -14,13 +16,13 @@ services:
     ports: 
       - "8081:8400"
     restart: always
-    depends_on:
-      - db
   db:
     container_name: db
     image: postgres:alpine
     volumes:
       - db-data:/var/lib/postgresql/data
+    ports: 
+      - "5432:5432"
     restart: always
     environment:
       PGDATA: /var/lib/postgresql/data/pgdata

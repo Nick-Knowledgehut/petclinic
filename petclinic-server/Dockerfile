@@ -14,6 +14,7 @@ run cd spring-petclinic-rest && \
     sed -i 's/localhost/db/' src/main/resources/application-mysql.properties && \
     sed -i 's/hsqldb/postgresql/' src/main/resources/application.properties && \
     sed -i 's/false/true/' src/main/resources/application.properties && \
+    sed -i 's/INFO/DEBUG/' src/main/resources/application.properties && \
     mvn clean package -DskipTests
 
 from adoptopenjdk/openjdk11:alpine
