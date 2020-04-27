@@ -13,13 +13,42 @@ That command pulls an image from hub.docker and runs it, sharing the docker-sock
 docker run -it --rm -v /var/run/docker.sock:/var/run/docker.sock bryandollery/petclinic cbuild
 ```
 
-It'll not pull the containers from hub.docker, rather it will build these containers locally for you, then run the two container using docker-compose.
+Rather than pulling the containers from hub.docker, it will build these containers locally for you, then run the two container using docker-compose.
+
+Other interesting commands include:
+```
+docker run -it --rm -v /var/run/docker.sock:/var/run/docker.sock bryandollery/petclinic up
+```
+Which runs the `docker-compose up -d` command to bring up the servers and
+```
+docker run -it --rm -v /var/run/docker.sock:/var/run/docker.sock bryandollery/petclinic down
+```
+Which runs the `docker-compose down` command to bring down the servers. While the servers are running you can run:
+```
+docker run -it --rm -v /var/run/docker.sock:/var/run/docker.sock bryandollery/petclinic logs
+```
+To view the logs via the `docker-compose logs -f` command.
+
+These commands all override the `cmd` entry in the dockerfile (which defaults to `petclinic`). The default entrypoint
+causes docker to run `make` in the container you're running, so these cmd overrides are all `make` targets.
+
+If you'd like to get your hands a little more dirty with docker, you can always run bash in the PetClinic container like this:
+```
+docker run -it --rm -v /var/run/docker.sock:/var/run/docker.sock --entrypoint /bin/bash bryandollery/petclinic
+```
+Notice the `--entrypoint bash` argument. This overrides the default `entrypoint` to run `bash` rather than `make`. This 
+will dump you straight into a bash terminal in the /petclinic directory. This directory contains a clone of this git repo.
+From here you can try `make up`, or `make down`, or any of the other targets in the Makefile, or you can `cd` into the
+subdirectories (one per server) to play around with those too. Feel free to edit the `Dockerfile` that sits in each directory,
+but be aware that the next command should be, `make` or `make build`, to force make to rebuild the images you're using. You can 
+follow that with `make up`. Docker compose will replace any running containers that you have changed.
 
 The [PetClinic](http://localhost:8081/petclinic/index.html) is served locally on port 8081
 
 ---
 
-# Testing The Pet Clinic
+## Testing The Pet Clinic
+#### A Project for groups of 4 people
 
 Our intent is to layer all the course's training tools into a full testing suite for this application. Start following this process:
 
@@ -28,6 +57,25 @@ Our intent is to layer all the course's training tools into a full testing suite
 3. Use Gherkin language to document the features and stories
     * As A, I Want, So That
     * Given, When, Then
+4. Define a full test plan using the techniques you studied in the first few modules of the course
 4. Implement the Gherkin (cucumber) scripts using 
-    * Selenium's POM, and 
-    * JUnit with maven
+    * `Selenium's POM`, and 
+    * `JUnit` with `maven`
+    * Editing with `IntelliJ Idea`
+    * Using `git` to keep track of your progress (and `github`)
+5. Define a load-test plan for LoadRunner
+    * Record your use-cases as scenarios in VuGen
+    * Orchestrate the scenarios to test:
+        * Stress: Maximum load
+        * SLA: Endurance under load
+        * Stress: Max simultaneous users
+        * DB: Can support 100k vets and customers
+    * Generate html reports and add them to the github project
+
+###### Notes:
+You are *required* to use the tools listed here (docker, intellij, git, github, maven, selenium, intellij, java-11, LoadRunner suite).
+
+Alternatives are not acceptable. More activities will be added
+as we move through the course, including automation of testing
+pipelines with Jenkins, and secure-coding static-analysis.
+
