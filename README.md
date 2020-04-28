@@ -73,9 +73,28 @@ Our intent is to layer all the course's training tools into a full testing suite
     * Generate html reports and add them to the github project
 
 ###### Notes:
-You are *required* to use the tools listed here (docker, intellij, git, github, maven, selenium, intellij, java-11, LoadRunner suite).
+You are *required* to use the tools listed here
+* [Docker](https://www.docker.com/)
+* [Docker compose](https://docs.docker.com/compose/)
+* [IntelliJ Idea](https://www.jetbrains.com/idea/)
+* [Git](https://git-scm.com/)
+* [GitHub](https://github.com/)
+* [Maven](http://maven.apache.org/)
+* [Selenium](https://github.com/SeleniumHQ/selenium)
+* [AdoptOpenJDK Java-11](https://adoptopenjdk.net/)
+* [make](https://www.gnu.org/software/make/)
+* [LoadRunner suite](https://www.microfocus.com/en-us/products/loadrunner-professional/overview)
+    * VuGen
+    * Controller
+    * Anlysis
+    
 
-Alternatives are not acceptable. More activities will be added
+
+Alternative tools are not really acceptable. More activities will be added
 as we move through the course, including automation of testing
 pipelines with Jenkins, and secure-coding static-analysis.
+
+Each team will nominate 1 person to host the team's github repo. When working on changes, each member of the team
+should fork that repo and changes should be merged back into the main repo via the process of pull-request and code-review.
+
 
