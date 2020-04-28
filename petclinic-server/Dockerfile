@@ -6,4 +6,4 @@ run cd /root/spring-petclinic-rest && \
 
 from adoptopenjdk/openjdk11:alpine
 copy --from=build /root/spring-petclinic-rest/target/spring-petclinic-rest-2.3.0.jar /
-cmd ["java", "-jar", "spring-petclinic-rest-2.2.5.jar"]
+cmd ["java", "-jar", "spring-petclinic-rest-2.3.0.jar"]
