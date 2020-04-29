@@ -31,5 +31,8 @@ down:
 clean:
 	docker rm -f $(docker ps -qa)
 
+cleandb:
+	docker volume rm petclinic-db
+
 logs:
 	docker-compose logs -f

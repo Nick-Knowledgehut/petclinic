@@ -12,3 +12,18 @@ services:
     build: ./petclinic-client
     ports: 
     - "8081:8400"
+  db:
+    container_name: petclinic-db
+    image: bryandollery/petclinic-db
+    build: ./petclinic-db
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_PASSWORD=petclinic
+      - POSTGRES_DB=petclinic
+    volumes:
+      - petclinic-db:/var/lib/postgresql/data
+
+volumes:
+    petclinic-db:
+        name: petclinic-db
