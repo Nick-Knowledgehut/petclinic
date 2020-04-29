@@ -5,14 +5,16 @@ services:
     image: bryandollery/petclinic-server
     build: ./petclinic-server
     ports:
-    - "8080:9966"
+      - "8080:9966"
+    depends_on:
+      - petclinic-db
   petclinic-client:
     container_name: petclinic-client
     image: bryandollery/petclinic-client
     build: ./petclinic-client
     ports: 
     - "8081:8400"
-  db:
+  petclinic-db:
     container_name: petclinic-db
     image: bryandollery/petclinic-db
     build: ./petclinic-db

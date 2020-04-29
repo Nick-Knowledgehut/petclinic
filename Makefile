@@ -13,6 +13,7 @@ build-petclinic-tools:
 
 pull:
 	docker pull bryandollery/petclinic
+	docker pull bryandollery/petclinic-db
 	docker pull bryandollery/petclinic-server
 	docker pull bryandollery/petclinic-client
 
