@@ -14,6 +14,20 @@
 					"item": [
 						{
 							"name": "getOwner",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "ef4af232-69e3-4c92-8a12-986bc5684026",
+										"exec": [
+											"pm.test(\"id is correct\", function () {",
+											"    pm.expect(pm.response.json().id).to.eql(parseInt(environment.lastId));",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
 							"request": {
 								"auth": {
 									"type": "noauth"
@@ -21,20 +35,13 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{baseUrl}}/owners/:ownerId",
+									"raw": "{{baseUrl}}/owners/{{lastId}}",
 									"host": [
 										"{{baseUrl}}"
 									],
 									"path": [
 										"owners",
-										":ownerId"
-									],
-									"variable": [
-										{
-											"key": "ownerId",
-											"value": "<integer>",
-											"description": "(Required) ownerId"
-										}
+										"{{lastId}}"
 									]
 								}
 							},
@@ -549,27 +556,11 @@
 							"script": {
 								"id": "2a6661e5-e68a-4eff-a155-96b867bf88a2",
 								"exec": [
-									"pm.test(\"Status code is 200\", function () {",
-									"    pm.response.to.have.status(200);",
-									"});",
-									"",
-									"pm.test(\"Content-Type is present\", function () {",
-									"    pm.response.to.have.header(\"Content-Type\");",
-									"});",
-									"",
-									"pm.test(\"Expect 15 owners\", function () {",
+									"pm.test(\"Expect \" + environment.results + \" owners\", function () {",
 									"    var json = pm.response.json();",
-									"    pm.expect(json.length).to.eql(15);",
+									"    pm.expect(json.length).to.eql(parseInt(environment.results));",
 									"});",
 									"",
-									"pm.test(\"First object is George Franklin (id=1) with 1 pet\", function() {",
-									"    var json = pm.response.json();",
-									"    ",
-									"    pm.expect(json[0].id).to.eql(1);",
-									"    pm.expect(json[0].firstName).to.eql(\"George\");",
-									"    pm.expect(json[0].lastName).to.eql(\"Franklin\");",
-									"    pm.expect(json[0].pets.length).to.eql(1);",
-									"});",
 									""
 								],
 								"type": "text/javascript"
@@ -705,6 +696,24 @@
 				},
 				{
 					"name": "addOwner",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "555c1f75-ba00-40b0-b7ad-8ebb7cc27185",
+								"exec": [
+									"pm.test(\"Successfully Created Owner\", function () {",
+									"    pm.response.to.have.status(201);",
+									"    postman.setEnvironmentVariable(\"results\", parseInt(environment.results) + 1);",
+									"    postman.setEnvironmentVariable(\"lastId\", pm.response.json().id)",
+									"});",
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"request": {
 						"auth": {
 							"type": "noauth"
@@ -718,7 +727,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"address\": \"Whatever\",\n    \"city\": \"Riyadh\",\n    \"firstName\": \"Usman\",\n    \"lastName\": \"Kahn\",\n   \"telephone\": \"234234\"\n}"
+							"raw": "{\n\t\"firstName\":\"Bryan\",\n\t\"lastName\": \"Dollery\",\n\t\"address\":\"whatever\",\n\t\"telephone\":\"234234\",\n\t\"city\":\"Nairobi\"\n}"
 						},
 						"url": {
 							"raw": "{{baseUrl}}/owners",
@@ -1032,6 +1041,220 @@
 								{
 									"key": "Content-Type",
 									"value": "text/plain"
+								}
+							],
+							"cookie": [],
+							"body": ""
+						}
+					]
+				},
+				{
+					"name": "Initialise",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "5b40e8b6-5ef0-408d-ace4-b76025e03f58",
+								"exec": [
+									"json = pm.response.json();",
+									"postman.setEnvironmentVariable(\"results\", json.length);",
+									"postman.setEnvironmentVariable(\"lastId\", json[json.length - 1].id)"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/owners",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"owners"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "addOwner Copy",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "bcd09ed6-b1ba-4c2b-9a2b-ae21ccc30b37",
+								"exec": [
+									"pm.test(\"Successfully Created Owner\", function () {",
+									"    pm.response.to.have.status(201);",
+									"    postman.setEnvironmentVariable(\"results\", parseInt(environment.results) + 1);",
+									"    postman.setEnvironmentVariable(\"lastId\", pm.response.json().id)",
+									"});",
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"firstName\":\"Bryan\",\n\t\"lastName\": \"Dollery\",\n\t\"address\":\"whatever\",\n\t\"telephone\":\"234234\",\n\t\"city\":\"Nairobi\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/owners",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"owners"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Not Found",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/owners",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"owners"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/plain"
+								}
+							],
+							"cookie": [],
+							"body": ""
+						},
+						{
+							"name": "Unauthorized",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/owners",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"owners"
+									]
+								}
+							},
+							"status": "Unauthorized",
+							"code": 401,
+							"_postman_previewlanguage": "text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/plain"
+								}
+							],
+							"cookie": [],
+							"body": ""
+						},
+						{
+							"name": "Forbidden",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/owners",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"owners"
+									]
+								}
+							},
+							"status": "Forbidden",
+							"code": 403,
+							"_postman_previewlanguage": "text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/plain"
+								}
+							],
+							"cookie": [],
+							"body": ""
+						},
+						{
+							"name": "Created",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/owners",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"owners"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/plain"
+								}
+							],
+							"cookie": [],
+							"body": ""
+						},
+						{
+							"name": "OK",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/owners",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"owners"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "*/*"
 								}
 							],
 							"cookie": [],

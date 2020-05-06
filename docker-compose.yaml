@@ -13,7 +13,7 @@ services:
     image: bryandollery/petclinic-client
     build: ./petclinic-client
     ports: 
-    - "8081:8400"
+      - "8081:8400"
   petclinic-db:
     container_name: petclinic-db
     image: bryandollery/petclinic-db

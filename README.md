@@ -50,6 +50,7 @@ The [PetClinic](http://localhost:8081/petclinic/index.html) is served locally on
 ## Testing The Pet Clinic
 #### A Project for groups of 4 people
 
+
 Our intent is to layer all the course's training tools into a full testing suite for this application. Start following this process:
 
 1. Exploratory Testing
@@ -57,20 +58,25 @@ Our intent is to layer all the course's training tools into a full testing suite
 3. Use Gherkin language to document the features and stories
     * As A, I Want, So That
     * Given, When, Then
-4. Define a full test plan using the techniques you studied in the first few modules of the course
 4. Implement the Gherkin (cucumber) scripts using 
     * `Selenium's POM`, and 
     * `JUnit` with `maven`
     * Editing with `IntelliJ Idea`
     * Using `git` to keep track of your progress (and `github`)
-5. Define a load-test plan for LoadRunner
-    * Record your use-cases as scenarios in VuGen
-    * Orchestrate the scenarios to test:
-        * Stress: Maximum load
-        * SLA: Endurance under load
-        * Stress: Max simultaneous users
-        * DB: Can support 100k vets and customers
-    * Generate html reports and add them to the github project
+5. Test the REST API with `Postman` (tests in `JS`)
+6. Write Jenkins pipelines to run this in CI
+
+Deliverables:
+1. High level plan of action
+2. Feature files
+3. Junit/Selenium Tests for these features
+4. Postman API tests running in a Newman container
+5. Jenkins pipelines
+
+Expectations
+All in github -- 1 account per team
+All running in containers
+
 
 ###### Notes:
 You are *required* to use the tools listed here
@@ -79,22 +85,19 @@ You are *required* to use the tools listed here
 * [IntelliJ Idea](https://www.jetbrains.com/idea/)
 * [Git](https://git-scm.com/)
 * [GitHub](https://github.com/)
+* [DockerHub](https://hub.docker.com)
 * [Maven](http://maven.apache.org/)
 * [Selenium](https://github.com/SeleniumHQ/selenium)
 * [AdoptOpenJDK Java-11](https://adoptopenjdk.net/)
 * [make](https://www.gnu.org/software/make/)
-* [LoadRunner suite](https://www.microfocus.com/en-us/products/loadrunner-professional/overview)
-    * VuGen
-    * Controller
-    * Anlysis
-    
+* [Postman](https://postman.com/)   
+* [Jenkins](https://jenkins.io)
 
 
 Alternative tools are not really acceptable. More activities will be added
 as we move through the course, including automation of testing
 pipelines with Jenkins, and secure-coding static-analysis.
 
-Each team will nominate 1 person to host the team's github repo. When working on changes, each member of the team
-should fork that repo and changes should be merged back into the main repo via the process of pull-request and code-review.
+Each team will nominate 1 person to host the team's github repo.
 
 

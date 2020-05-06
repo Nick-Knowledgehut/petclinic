@@ -16,6 +16,7 @@ pull:
 	docker pull bryandollery/petclinic-db
 	docker pull bryandollery/petclinic-server
 	docker pull bryandollery/petclinic-client
+	docker pull bryandollery/petclinic-testing-newman
 
 run:
 	docker run -it --rm -v /var/run/docker.sock:/var/run/docker.sock bryandollery/petclinic

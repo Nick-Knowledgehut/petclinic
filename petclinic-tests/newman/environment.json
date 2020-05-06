@@ -1,0 +1,29 @@
+{
+  "_": {
+    "postman_variable_scope": "environment",
+    "postman_exported_at": "2020-04-29T14:38:56.907Z",
+    "postman_exported_using": "Newman/5.0.0"
+  },
+  "id": "147fd920-ff1f-423c-a6ae-7d6687c820b1",
+  "name": "Localhost",
+  "values": [
+    {
+      "type": "any",
+      "value": "http://petclinic-server:9966/petclinic/api",
+      "key": "baseUrl"
+    },
+    {
+      "type": "any",
+      "value": "119",
+      "key": "results"
+    },
+    {
+      "type": "any",
+      "value": "209",
+      "key": "lastId"
+    }
+  ],
+  "_postman_variable_scope": "environment",
+  "_postman_exported_at": "2020-04-29T14:40:06.152Z",
+  "_postman_exported_using": "Newman/5.0.0"
+}
