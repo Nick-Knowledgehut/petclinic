@@ -2,7 +2,7 @@ from node:10-alpine as build
 
 run apk add git bash jq vim unzip zip curl && \
     npm install -g @angular/cli@8.0.1 && \
-    git clone https://github.com/spring-petclinic/spring-petclinic-angular.git
+    git clone https://github.com/BryanDollery/spring-petclinic-angular.git
     
 run cd /spring-petclinic-angular && \
     npm install
