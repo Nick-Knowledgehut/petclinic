@@ -74,6 +74,20 @@ Deliverables:
 5. Jenkins pipelines
 6. Report
 
+Report:
+1. Executive Summary (Recommendations)
+2. Overview & High-Level Findings
+3. Approach (selenium+postman+jenkins)
+4. Front-End
+5. Results
+6. Back-End
+7. Results
+8. Analysis
+9. Global Results & Recommendations
+
+Glossary: high level of confidence (or low), integration, teams, assertions, API, UI
+
+
 Expectations
 All in github -- 1 account per team
 All running in containers
