@@ -72,6 +72,7 @@ Deliverables:
 3. Junit/Selenium Tests for these features
 4. Postman API tests running in a Newman container
 5. Jenkins pipelines
+6. Report
 
 Expectations
 All in github -- 1 account per team
