@@ -19,3 +19,4 @@ copy nginx.conf /etc/nginx/
 
 run apk add vim git bash unzip zip jq
 
+expose 8400
