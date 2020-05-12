@@ -1,5 +1,5 @@
 build:
-	DOCKER_BUILDKIT=1 docker build --build-arg rebuild=$$RANDOM --tag bryandollery/petclinic-server .
+	docker build --build-arg rebuild=$$RANDOM --tag bryandollery/petclinic-server .
 
 run:
 	docker run -it --rm --name petclinic-server -p 8080:9966 -d bryandollery/petclinic-server 

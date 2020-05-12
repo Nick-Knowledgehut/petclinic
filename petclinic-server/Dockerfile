@@ -4,7 +4,6 @@ arg rebuild
 
 run git clone https://github.com/bryandollery/spring-petclinic-rest.git && \
     cd /root/spring-petclinic-rest && \
-    git checkout kh-training-labs && \
     mvn clean package -DskipTests
 
 from adoptopenjdk/openjdk11:alpine
