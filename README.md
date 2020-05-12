@@ -115,4 +115,19 @@ pipelines with Jenkins, and secure-coding static-analysis.
 
 Each team will nominate 1 person to host the team's github repo.
 
+## Project Assessment
+Your project will be assessed by your managers at SITE
+
+You are all roleplaying parts in the story of an agile project at a major corporation. Each of the assessors is a Test Manager, and you are their testing-team.
+You have been asked by the test manager to develop an informed level of confidence in the 'releasability' of the petclinic platform as an MVP (minimum viable product) to a group of users, and to communicate that opinion to your manager so that they can give permission (or whithold it) for a production release this iteration.
+
+It is your manager's job that is on the line here -- you must give him/her enough information during your presentation to make an informed decision. If they allow a low-quality solution into production it could cost them their job. You must be conservative, but remember that software in production has a lot more value to a business than software on the bench, so you must balance these two conflicting drivers.
+
+Notes:
+This is an agile project. Any documentation you write will be out of date at by the end of the next 2-week iteration and will not be reviewed again after that. Invest an appropriate amount of time in this disposable artifact. You must show your techniques, what passed your tests, and your concerns. If a released features (such as adding Pets through the API) cannot be tested then that is a major red flag that needs to be communicated -- if there are many such problems then categorize them together and report on them as a group.
+
+You should not rely solely on a slide-deck, though that should frame the conversation. You need also to develop your manager's confidence that your approach justifies your outcomes. This is achived through a live demonstration of the running tests. There should be a slide describing what you did, then you show it running, then you have a slide showing the results. Then a slide talking about what you couldn't test, then another with recommendations.
+
+Your instructor will walk your managers through a technical review of your code, asking you pertinent questions as we proceed. Answers should be distributed across your team. You should keep a private whatsapp group open during the presentation to nominate someone to answer each question as it is asked. Try to limit your answers to no more than a sentence or two.
+
 
