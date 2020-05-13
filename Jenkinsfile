@@ -9,6 +9,9 @@ pipeline {
   stages {
     stage('Deploy Servers') {
       steps {
+        sh 'echo wibble'
+        sh 'ls -gAlFh /'
+        sh 'whoami'
         sh 'docker-compose up -d'
       }
     }
