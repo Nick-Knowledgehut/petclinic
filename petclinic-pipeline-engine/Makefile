@@ -2,4 +2,4 @@ build:
 	docker build --tag bryandollery/petclinic-pipeline-engine .
 
 run:
-	docker run -it --rm -v /var/run/docker.sock:/var/run/docker.sock -v $(pwd):/work -w /work bryandollery/petclinic-pipeline-engine
+	docker run -it --rm -v /var/run/docker.sock:/var/run/docker.sock -v $$(pwd):/work -w /work bryandollery/petclinic-pipeline-engine
