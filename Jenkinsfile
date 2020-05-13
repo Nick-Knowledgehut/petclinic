@@ -1,6 +1,9 @@
 pipeline {
   agent {
-    docker {image 'bryandollery/petclinic-pipeline-engine'}
+    docker {
+      image 'bryandollery/petclinic-pipeline-engine'
+      args '-v /var/run/docker.sock:/var/run/docker.sock'
+    }
   } 
     
   stages {
@@ -10,7 +13,7 @@ pipeline {
       }
     }
 
-    stage('Test UI') {
+    stage('Tests') {
       parallel {
         stage('Test UI') {
           steps {
@@ -31,9 +34,13 @@ pipeline {
 
           }
         }
+      }
 
+      stage('Kill Servers') {
+        steps {
+          sh 'docker-compose down'
+        }
       }
     }
-
   }
 }
