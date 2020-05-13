@@ -1,5 +1,8 @@
 pipeline {
-  agent any
+  agent {
+    docker {image 'bryandollery/petclinic-pipeline-engine'}
+  } 
+    
   stages {
     stage('Deploy Servers') {
       steps {
